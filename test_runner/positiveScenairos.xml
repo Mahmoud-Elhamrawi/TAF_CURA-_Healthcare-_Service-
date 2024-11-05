@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="positive TC" verbose="1">
+    <listeners>
+        <listener class-name="Listeners.IInvokedListener"/>
+        <listener class-name="Listeners.ITestListener"/>
+    </listeners>
+    <test name="happy scenarios">
+        <classes>
+            <class name="TestCases.TC02_LoginTC">
+                <methods>
+                    <include name="validLogin"/>
+                </methods>
+            </class>
+            <class name="TestCases.TC_makeApointmentTC">
+                <methods>
+                    <include name="makeAppointment"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+</suite>

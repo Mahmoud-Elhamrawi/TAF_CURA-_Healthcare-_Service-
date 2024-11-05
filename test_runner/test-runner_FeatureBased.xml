@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="features TC" verbose="1">
+    <listeners>
+        <listener class-name="Listeners.IInvokedListener"/>
+        <listener class-name="Listeners.ITestListener"/>
+    </listeners>
+    <test name="feature Based">
+        <classes>
+            <class name="TestCases.TC01_LandingTC"/>
+            <class name="TestCases.TC02_LoginTC"/>
+
+        </classes>
+    </test>
+
+
+</suite>
