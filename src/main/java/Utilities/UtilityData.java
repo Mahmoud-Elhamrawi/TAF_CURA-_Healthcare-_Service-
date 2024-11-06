@@ -1,5 +1,7 @@
 package Utilities;
 
+import DataModeling.dataModel;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
@@ -40,5 +42,17 @@ public class UtilityData {
         return "";
     }
 
+
+    //TODO:: read data from json file have more than one object
+    public static dataModel readJson() {
+        try {
+            FileReader reader = new FileReader("src/test/resources/TestData/loginData.json");
+            dataModel model = new Gson().fromJson(reader, dataModel.class);
+            return model;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

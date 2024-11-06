@@ -9,7 +9,7 @@
         <classes>
             <class name="TestCases.TC02_LoginTC">
                 <methods>
-                    <include name="validLogin"/>
+                    <include name="DataModeling.validLogin"/>
                 </methods>
             </class>
             <class name="TestCases.TC_makeApointmentTC">

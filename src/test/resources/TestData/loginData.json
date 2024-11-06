@@ -1,0 +1,17 @@
+{
+  "login": {
+    "validLogin": {
+      "userName": "John Doe",
+      "password": "ThisIsNotAPassword"
+    },
+    "inValidLogin": {
+      "userName": "John ",
+      "password": "ThisIsNoPassword"
+    },
+    "inValidLogin2": {
+      "userName": "",
+      "password": ""
+    }
+  }
+}
+
