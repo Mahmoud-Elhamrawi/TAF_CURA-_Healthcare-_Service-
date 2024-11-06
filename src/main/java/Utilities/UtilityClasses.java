@@ -10,6 +10,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.Set;
 
 public class UtilityClasses {
 
@@ -72,6 +73,19 @@ public class UtilityClasses {
     //TODO::convert locator to WebEle
     public static WebElement convertEle(WebDriver driver, By locator) {
         return driver.findElement(locator);
+    }
+
+    //TODO:: add set cookies
+    public static Set<Cookie> getAllCookies(WebDriver driver) {
+        return driver.manage().getCookies();
+    }
+
+    //TODO:: restore cookies
+    public static void restoreCookies(WebDriver driver, Set<Cookie> cookies) {
+        for (Cookie cookie : cookies) {
+            driver.manage().addCookie(cookie);
+
+        }
     }
 
 

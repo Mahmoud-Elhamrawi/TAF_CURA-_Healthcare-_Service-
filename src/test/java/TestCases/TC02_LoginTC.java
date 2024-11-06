@@ -44,7 +44,8 @@ public class TC02_LoginTC {
     @Feature("login feature")
     @Story("valid login")
     public void validLogin() {
-        new P01_LandingPage(getDriver()).goToLoginForm()
+        new P01_LandingPage(getDriver())
+                .goToLoginForm()
                 .enterUserName(userName)
                 .enterUserPassword(password)
                 .clickOnLoginBtn();

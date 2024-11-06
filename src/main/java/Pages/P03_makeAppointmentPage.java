@@ -28,12 +28,6 @@ public class P03_makeAppointmentPage {
     }
 
 
-    public P03_makeAppointmentPage scrollToEle() {
-
-        UtilityClasses.scroll(driver, appointmentForm);
-        return this;
-    }
-
     public P03_makeAppointmentPage selectFacility() {
         UtilityClasses.selectDropDown(driver, combo_facility, "Tokyo CURA Healthcare Center");
         return this;
