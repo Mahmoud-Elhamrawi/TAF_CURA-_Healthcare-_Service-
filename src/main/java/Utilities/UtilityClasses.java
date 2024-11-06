@@ -30,7 +30,7 @@ public class UtilityClasses {
 
     //TODO::get Text
     public static String getTextFromEle(WebDriver driver, By locator) {
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator).getText();
     }
 

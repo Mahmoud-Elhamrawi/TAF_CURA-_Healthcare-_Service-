@@ -11,6 +11,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -52,11 +53,36 @@ public class TC_makeApointmentTC {
                 .checkHospitalReadmission()
                 .clickOnRadioProgramMedicaid()
                 .enterVisitDate(UtilityData.readDataFromJsonFile("appointmentData", "Date"))
-                .addComment(UtilityData.readDataFromPropertyFile("appointmentData", "comment"))
+                .addComment(UtilityData.readDataFromJsonFile("appointmentData", "comment"))
                 .submitAppointment();
-        new P03_makeAppointmentPage(getDriver()).assertOnConfirmationAppointment(UtilityData.readDataFromPropertyFile("ENV", "appointmentConfirmURL"));
+        Assert.assertTrue(new P03_makeAppointmentPage(getDriver()).assertOnConfirmationAppointmentURL(UtilityData.readDataFromPropertyFile("ENV", "appointmentConfirmURL")));
+        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnConfirmAppoimtmentText(), "Appointment Confirmation");
+        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnDateEntering(), UtilityData.readDataFromJsonFile("appointmentData", "Date"));
+        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnCommentEntering(), UtilityData.readDataFromJsonFile("appointmentData", "comment"));
+
+        new P03_makeAppointmentPage(getDriver()).goToHomePage();
+        Assert.assertTrue(new P01_LandingPage(getDriver()).assertOnUrl(UtilityData.readDataFromPropertyFile("ENV", "landingUrl")));
 
 
+    }
+
+//    @Description("test makeAppointment feature with valid data ")
+//    @Epic("Web App")
+//    @Feature("makeAppointment feature")
+//    @Story("valid makeAppointment")
+//    @Test(priority = 2, dependsOnMethods = "makeAppointment")
+//    public void makeDynamicAppointment() {
+//
+//    }
+
+
+    @Description("test makeAppointment feature with valid data ")
+    @Epic("Web App")
+    @Feature("makeAppointment feature")
+    @Story("valid makeAppointment")
+    @Test(priority = 2, dependsOnMethods = "makeAppointment")
+    public void makeAnotherAppointment() {
+        this.makeAppointment();
     }
 
     @AfterMethod

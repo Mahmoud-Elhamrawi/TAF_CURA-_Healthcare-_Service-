@@ -13,21 +13,17 @@ public class IInvokedListener implements IInvokedMethodListener {
 
 
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
-        UtilityLogs.info(String.valueOf(method.getDate()));
+        //  UtilityLogs.info(String.valueOf(method.getDate()));
     }
 
     public void afterInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
-        UtilityLogs.info(testResult.getName()+" executed..");
-        if(testResult.getStatus() == ITestResult.FAILURE)
-        {
-            UtilityLogs.error(testResult.getName()+"fail.......");
-            UtilityClasses.takeScreenShot(getDriver() ,testResult.getName());
+        UtilityLogs.info(testResult.getName() + "   executed....");
+        if (testResult.getStatus() == ITestResult.FAILURE) {
+            UtilityLogs.error(testResult.getName() + "   fail.......");
+            UtilityClasses.takeScreenShot(getDriver(), testResult.getName());
 
+        }
     }
-}
-
-
-
 
 
 }

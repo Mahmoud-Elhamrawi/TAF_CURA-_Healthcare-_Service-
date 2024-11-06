@@ -15,17 +15,19 @@ public class ITestListener implements org.testng.ITestListener {
 
 
     public void onTestStart(ITestResult result) {
-        UtilityLogs.info("Test Case is starting ...");
+
+        UtilityLogs.info(result.getName() + " Test Case is starting ...");
     }
+
     public void onTestSuccess(ITestResult result) {
-        UtilityLogs.info("Test Case is success ...");
+        UtilityLogs.info(result.getName() + " Test Case is success ...");
     }
 
     public void onTestFailure(ITestResult result) {
-        UtilityLogs.info("Test Case is fail ...");
+        UtilityLogs.info(result.getName() + " Test Case is fail ...");
     }
 
     public void onTestSkipped(ITestResult result) {
-        UtilityLogs.info("Test Case is skipped ...");
+        UtilityLogs.info(result.getName() + " Test Case is skipped ...");
     }
 }

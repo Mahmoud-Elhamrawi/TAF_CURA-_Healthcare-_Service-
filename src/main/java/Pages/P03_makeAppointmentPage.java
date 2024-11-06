@@ -17,6 +17,10 @@ public class P03_makeAppointmentPage {
     private final By txt_visit_date = By.id("txt_visit_date");
     private final By txt_comment = By.id("txt_comment");
     private final By btn_appointment = By.id("btn-book-appointment");
+    private final By appointmentText = By.cssSelector("section[id=\"summary\"] h2");
+    private final By dateAssert = By.id("visit_date");
+    private final By commentAssert = By.id("comment");
+    private final By GoToHomepage = By.linkText("Go to Homepage");
 
 
     public P03_makeAppointmentPage(WebDriver driver) {
@@ -39,6 +43,7 @@ public class P03_makeAppointmentPage {
         UtilityClasses.clickOnEle(driver, chk_hospotal_readmission);
         return this;
     }
+    //chk_hospotal_readmission
 
     public P03_makeAppointmentPage clickOnRadioProgramMedicaid() {
         UtilityClasses.clickOnEle(driver, radio_program_medicaid);
@@ -60,8 +65,28 @@ public class P03_makeAppointmentPage {
         return new P04_AppointmentConfirmationPage(driver);
     }
 
-    public boolean assertOnConfirmationAppointment(String expectUrl) {
+    public boolean assertOnConfirmationAppointmentURL(String expectUrl) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.urlToBe(expectUrl));
     }
+
+    public String assertOnConfirmAppoimtmentText() {
+        return UtilityClasses.getTextFromEle(driver, appointmentText);
+        //return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(appointmentText));
+    }
+
+    public String assertOnDateEntering() {
+        return UtilityClasses.getTextFromEle(driver, dateAssert);
+
+    }
+
+    public String assertOnCommentEntering() {
+        return UtilityClasses.getTextFromEle(driver, commentAssert);
+
+    }
+
+    public void goToHomePage() {
+        UtilityClasses.clickOnEle(driver, GoToHomepage);
+    }
+
 
 }
