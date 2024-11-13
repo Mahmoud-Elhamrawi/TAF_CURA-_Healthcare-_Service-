@@ -24,7 +24,7 @@ import java.util.Set;
 import static DriverFactory.DriverFactory.getDriver;
 
 @Listeners({ITestListener.class, IInvokedListener.class})
-public class TC_makeApointmentTC {
+public class TC03_makeApointmentTC {
 
 
     public String userName = UtilityData.readDataFromJsonFile("validLoginData", "userName");
