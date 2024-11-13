@@ -1,6 +1,6 @@
 package Utilities;
 
-import DataModeling.dataModel;
+import DataModeling.LOGIN.dataModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -44,9 +44,9 @@ public class UtilityData {
 
 
     //TODO:: read data from json file have more than one object
-    public static dataModel readJson() {
+    public static dataModel readJson(String fileType) {
         try {
-            FileReader reader = new FileReader("src/test/resources/TestData/loginData.json");
+            FileReader reader = new FileReader("src/test/resources/TestData/"+fileType+".json");
             dataModel model = new Gson().fromJson(reader, dataModel.class);
             return model;
         } catch (Exception e) {

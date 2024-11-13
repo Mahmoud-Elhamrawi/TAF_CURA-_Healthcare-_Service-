@@ -46,8 +46,8 @@ public class TC02_LoginTC {
     public void validLogin() {
         new P01_LandingPage(getDriver())
                 .goToLoginForm()
-                .enterUserName(UtilityData.readJson().login.validLogin.userName)
-                .enterUserPassword(UtilityData.readJson().login.validLogin.password)
+                .enterUserName(UtilityData.readJson("loginData").login.validLogin.userName)
+                .enterUserPassword(UtilityData.readJson("loginData").login.validLogin.password)
                 .clickOnLoginBtn();
         Assert.assertTrue(new P02_LoginPage(getDriver()).assertOnHomeUrl(UtilityData.readDataFromPropertyFile("ENV", "HomePage")));
     }
@@ -60,8 +60,8 @@ public class TC02_LoginTC {
     @Story("invalid login")
     public void inValidLogin() {
         new P01_LandingPage(getDriver()).goToLoginForm()
-                .enterUserName(UtilityData.readJson().login.inValidLogin.userName)
-                .enterUserPassword(UtilityData.readJson().login.inValidLogin.password)
+                .enterUserName(UtilityData.readJson("loginData").login.inValidLogin.userName)
+                .enterUserPassword(UtilityData.readJson("loginData").login.inValidLogin.password)
                 .clickOnLoginBtn();
 
         Assert.assertEquals(new P02_LoginPage(getDriver()).assertOnTextDanger(), "Login failed! Please ensure the username and password are valid.");
@@ -75,8 +75,8 @@ public class TC02_LoginTC {
     @Story("invalid login")
     public void inValidLoginTwo() {
         new P01_LandingPage(getDriver()).goToLoginForm()
-                .enterUserName(UtilityData.readJson().login.inValidLogin2.userName)
-                .enterUserPassword(UtilityData.readJson().login.inValidLogin2.password)
+                .enterUserName(UtilityData.readJson("loginData").login.inValidLogin2.userName)
+                .enterUserPassword(UtilityData.readJson("loginData").login.inValidLogin2.password)
                 .clickOnLoginBtn();
         Assert.assertEquals(new P02_LoginPage(getDriver()).assertOnTextDanger(), "Login failed! Please ensure the username and password are valid.");
     }

@@ -13,8 +13,8 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -49,7 +49,7 @@ public class TC_makeApointmentTC {
     }
 */
 
-    @BeforeClass
+    @BeforeMethod
     public void setup() {
         DriverFactory.setupDriver(UtilityData.readDataFromPropertyFile("ENV", "Browser"));
         getDriver().get(UtilityData.readDataFromPropertyFile("ENV", "landingUrl"));
@@ -62,60 +62,15 @@ public class TC_makeApointmentTC {
     @Feature("makeAppointment feature")
     @Story("valid makeAppointment")
     @Test(priority = 1)
-    public void makeStaticAppointment() {
+    public void makeAppointmentOne() {
         new P01_LandingPage(getDriver()).goToLoginForm()
                 .enterUserName(userName)
                 .enterUserPassword(password)
                 .clickOnLoginBtn()
-                .selectFacility()
+                .selectFacility("Hongkong CURA Healthcare Center")
                 .checkHospitalReadmission()
-                .clickOnRadioProgramMedicaid();
-                /*
-                .enterVisitDate(UtilityData.readDataFromJsonFile("appointmentData", "Date"))
-                .addComment(UtilityData.readDataFromJsonFile("appointmentData", "comment"))
-                .submitAppointment();*/
+                .clickOnRadioProgramMedicaid("medicare")
 
-//        Assert.assertTrue(new P03_makeAppointmentPage(getDriver()).assertOnConfirmationAppointmentURL(UtilityData.readDataFromPropertyFile("ENV", "appointmentConfirmURL")));
-//        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnConfirmAppoimtmentText(), "Appointment Confirmation");
-//        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnDateEntering(), UtilityData.readDataFromJsonFile("appointmentData", "Date"));
-//        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnCommentEntering(), UtilityData.readDataFromJsonFile("appointmentData", "comment"));
-//
-//        new P03_makeAppointmentPage(getDriver()).goToHomePage();
-//        Assert.assertTrue(new P01_LandingPage(getDriver()).assertOnUrl(UtilityData.readDataFromPropertyFile("ENV", "landingUrl")));
-
-
-    }
-
-    @Description("test makeAppointment feature with valid data ")
-    @Epic("Web App")
-    @Feature("makeAppointment feature")
-    @Story("valid makeAppointment")
-    @Test(priority = 2, dependsOnMethods = "makeStaticAppointment")
-    public void makeDynamicAppointment() {
-        new P03_makeAppointmentPage(getDriver())
-                .enterVisitDate(UtilityData.readDataFromJsonFile("appointmentData", "Date"))
-                .addComment(UtilityData.readDataFromJsonFile("appointmentData", "comment"))
-                .submitAppointment();
-
-        Assert.assertTrue(new P03_makeAppointmentPage(getDriver()).assertOnConfirmationAppointmentURL(UtilityData.readDataFromPropertyFile("ENV", "appointmentConfirmURL")));
-        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnConfirmAppoimtmentText(), "Appointment Confirmation");
-        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnDateEntering(), UtilityData.readDataFromJsonFile("appointmentData", "Date"));
-        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnCommentEntering(), UtilityData.readDataFromJsonFile("appointmentData", "comment"));
-
-        new P03_makeAppointmentPage(getDriver()).goToHomePage();
-        Assert.assertTrue(new P01_LandingPage(getDriver()).assertOnUrl(UtilityData.readDataFromPropertyFile("ENV", "landingUrl")));
-    }
-
-
-    @Description("test makeAppointment feature with valid data ")
-    @Epic("Web App")
-    @Feature("makeAppointment feature")
-    @Story("valid makeAppointment")
-    @Test(priority = 3)
-    public void makeAnotherAppointment() {
-        this.makeStaticAppointment();
-
-        new P03_makeAppointmentPage(getDriver())
                 .enterVisitDate(UtilityData.readDataFromJsonFile("appointmentData", "Date"))
                 .addComment(UtilityData.readDataFromJsonFile("appointmentData", "comment"))
                 .submitAppointment();
@@ -131,7 +86,36 @@ public class TC_makeApointmentTC {
 
     }
 
-    @AfterClass
+    @Description("test makeAppointment feature with valid data ")
+    @Epic("Web App")
+    @Feature("makeAppointment feature")
+    @Story("valid makeAppointment")
+    @Test(priority = 2)
+    public void makeAppointmentTwo() {
+        new P01_LandingPage(getDriver()).goToLoginForm()
+                .enterUserName(userName)
+                .enterUserPassword(password)
+                .clickOnLoginBtn()
+                .selectFacility("Seoul CURA Healthcare Center")
+                .checkHospitalReadmission()
+                .clickOnRadioProgramMedicaid("none")
+
+                .enterVisitDate(UtilityData.readDataFromJsonFile("appointmentData", "Date"))
+                .addComment(UtilityData.readDataFromJsonFile("appointmentData", "comment"))
+                .submitAppointment();
+
+        Assert.assertTrue(new P03_makeAppointmentPage(getDriver()).assertOnConfirmationAppointmentURL(UtilityData.readDataFromPropertyFile("ENV", "appointmentConfirmURL")));
+        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnConfirmAppoimtmentText(), "Appointment Confirmation");
+        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnDateEntering(), UtilityData.readDataFromJsonFile("appointmentData", "Date"));
+        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnCommentEntering(), UtilityData.readDataFromJsonFile("appointmentData", "comment"));
+
+        new P03_makeAppointmentPage(getDriver()).goToHomePage();
+        Assert.assertTrue(new P01_LandingPage(getDriver()).assertOnUrl(UtilityData.readDataFromPropertyFile("ENV", "landingUrl")));
+
+    }
+
+
+    @AfterMethod
     public void tearDown() {
         DriverFactory.tearDown();
         UtilityLogs.info("the browser is closed.....");

@@ -13,7 +13,9 @@ public class P03_makeAppointmentPage {
     private final By appointmentForm = By.className("form-horizontal");
     private final By combo_facility = By.id("combo_facility");
     private final By chk_hospotal_readmission = By.id("chk_hospotal_readmission");
-    private final By radio_program_medicaid = By.id("radio_program_medicaid");
+    //    private final By radio_program_medicaid = By.xpath("//input[@id=\"radio_program_medicaid\"]");
+//    private final By radio_program_medicare = By.xpath("//input[@id=\"radio_program_medicare\"]");
+//    private final By radio_program_none =By.xpath("//input[@id=\"radio_program_none\"]");
     private final By txt_visit_date = By.id("txt_visit_date");
     private final By txt_comment = By.id("txt_comment");
     private final By btn_appointment = By.id("btn-book-appointment");
@@ -22,14 +24,14 @@ public class P03_makeAppointmentPage {
     private final By commentAssert = By.id("comment");
     private final By GoToHomepage = By.linkText("Go to Homepage");
 
-
+    //radio_program_none   radio_program_medicare
     public P03_makeAppointmentPage(WebDriver driver) {
         this.driver = driver;
     }
 
 
-    public P03_makeAppointmentPage selectFacility() {
-        UtilityClasses.selectDropDown(driver, combo_facility, "Tokyo CURA Healthcare Center");
+    public P03_makeAppointmentPage selectFacility(String val) {
+        UtilityClasses.selectDropDown(driver, combo_facility, val);
         return this;
     }
 
@@ -37,10 +39,10 @@ public class P03_makeAppointmentPage {
         UtilityClasses.clickOnEle(driver, chk_hospotal_readmission);
         return this;
     }
-    //chk_hospotal_readmission
 
-    public P03_makeAppointmentPage clickOnRadioProgramMedicaid() {
-        UtilityClasses.clickOnEle(driver, radio_program_medicaid);
+
+    public P03_makeAppointmentPage clickOnRadioProgramMedicaid(String prog) {
+        UtilityClasses.clickOnEle(driver, By.xpath("//input[@id=\"radio_program_" + prog + "\"]"));
         return this;
     }
 

@@ -1,1 +1,0 @@
-{"uuid":"c2a1e6fb-ac70-4ae5-ac17-cf1d7e207b39","name":"TestCases.TC_makeApointmentTC","children":["029d5eed-27ec-40fa-ab42-76096db3ee79"],"befores":[{"name":"loginPreCondition","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1730886479723,"stop":1730886486940}],"afters":[],"start":1730886479664,"stop":1730886501654}
