@@ -15,7 +15,7 @@ import java.time.Duration;
 
 @Listeners({ITestListener.class, IInvokedListener.class})
 
-public class TC04_ConfirmAppTest {
+public class TC04_HistoryTest {
 
 
     @BeforeMethod

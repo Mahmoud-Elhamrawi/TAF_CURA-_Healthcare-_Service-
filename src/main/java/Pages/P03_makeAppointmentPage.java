@@ -24,6 +24,10 @@ public class P03_makeAppointmentPage {
     private final By commentAssert = By.id("comment");
     private final By GoToHomepage = By.linkText("Go to Homepage");
 
+
+    private final By menu_toggle = By.id("menu-toggle");
+    private final By historyBtn = By.linkText("History");
+
     //radio_program_none   radio_program_medicare
     public P03_makeAppointmentPage(WebDriver driver) {
         this.driver = driver;
@@ -56,9 +60,9 @@ public class P03_makeAppointmentPage {
         return this;
     }
 
-    public P04_AppointmentConfirmationPage submitAppointment() {
+    public P04_HistoryPage submitAppointment() {
         UtilityClasses.clickOnEle(driver, btn_appointment);
-        return new P04_AppointmentConfirmationPage(driver);
+        return new P04_HistoryPage(driver);
     }
 
     public boolean assertOnConfirmationAppointmentURL(String expectUrl) {
@@ -82,6 +86,21 @@ public class P03_makeAppointmentPage {
 
     public void goToHomePage() {
         UtilityClasses.clickOnEle(driver, GoToHomepage);
+    }
+
+
+    public P03_makeAppointmentPage clickingOnToggle() {
+        UtilityClasses.clickOnEle(driver, menu_toggle);
+        return this;
+    }
+
+    public P04_HistoryPage goToHistoryPage() {
+        UtilityClasses.clickOnEle(driver, historyBtn);
+        return new P04_HistoryPage(driver);
+    }
+
+    public boolean assertOnUrlHistory(String expectUrl) {
+        return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.urlToBe(expectUrl));
     }
 
 

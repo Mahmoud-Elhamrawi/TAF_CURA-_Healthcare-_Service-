@@ -112,6 +112,11 @@ public class TC03_makeApointmentTC {
         new P03_makeAppointmentPage(getDriver()).goToHomePage();
         Assert.assertTrue(new P01_LandingPage(getDriver()).assertOnUrl(UtilityData.readDataFromPropertyFile("ENV", "landingUrl")));
 
+        new P03_makeAppointmentPage(getDriver()).clickingOnToggle()
+                .goToHistoryPage();
+
+        Assert.assertTrue(new P03_makeAppointmentPage(getDriver()).assertOnUrlHistory(UtilityData.readDataFromPropertyFile("ENV", "urlHistory")));
+
     }
 
 
