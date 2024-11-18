@@ -1,18 +1,20 @@
 package Utilities;
 
-import DataModeling.LOGIN.dataModel;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
 public class UtilityData {
-
-
     public static final String path_file_data = "src/test/resources/TestData/";
+    static String successfulLogin = "invalidLogin";
 
     //TODO::read data from json file
     public static String readDataFromJsonFile(String fileName, String key) {
@@ -43,16 +45,25 @@ public class UtilityData {
     }
 
 
-    //TODO:: read data from json file have more than one object
-    public static dataModel readJson(String fileType) {
-        try {
-            FileReader reader = new FileReader("src/test/resources/TestData/"+fileType+".json");
-            dataModel model = new Gson().fromJson(reader, dataModel.class);
-            return model;
-        } catch (Exception e) {
-            e.printStackTrace();
+    //TODO:: read data from json file have array of object
+    private static String[] readJsonFile(String status) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        FileReader reader = new FileReader("src/test/resources/TestData/successLogin.json");
+        Object object = jsonParser.parse(reader);
+        JSONObject jsonObject = (JSONObject) object;
+        JSONArray jsonArray = (JSONArray) jsonObject.get(status);
+        String arr[] = new String[jsonArray.size()];
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject users = (JSONObject) jsonArray.get(i);
+            String userName = (String) users.get("userName");
+            String password = (String) users.get("password");
+            arr[i] = userName + "," + password;
+
         }
-        return null;
+        return arr;
     }
 
+    public static String[] readDataJson(String statuss) throws IOException, ParseException {
+        return readJsonFile(statuss);
+    }
 }

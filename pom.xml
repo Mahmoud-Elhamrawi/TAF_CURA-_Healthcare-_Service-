@@ -23,7 +23,7 @@
         <commonIO.version>2.17.0</commonIO.version>
         <jfaker.version>1.0.2</jfaker.version>
         <aspectj.version>1.9.20.1</aspectj.version>
-       
+
         <suite.feature>test_runner/test-runner_FeatureBased.xml</suite.feature>
         <suite.positive>test_runner/positiveScenairos.xml</suite.positive>
 
@@ -94,6 +94,13 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
         </dependency>
     </dependencies>
 

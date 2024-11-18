@@ -11,12 +11,11 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.json.simple.parser.ParseException;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import static DriverFactory.DriverFactory.getDriver;
@@ -38,50 +37,63 @@ public class TC02_LoginTC {
 
     }
 
-    @Test(priority = 1)
+    @DataProvider
+    public Object[] validLogin() throws IOException, ParseException {
+        return UtilityData.readDataJson("validLogin");
+    }
+
+
+    @Test(priority = 1, dataProvider = "validLogin")
     @Description("test login feature with valid data ")
     @Epic("Web App")
     @Feature("login feature")
     @Story("valid login")
-    public void validLogin() {
+    public void validLogin(String data) {
+        String users[] = data.split(",");
         new P01_LandingPage(getDriver())
                 .goToLoginForm()
-                .enterUserName(UtilityData.readJson("loginData").login.validLogin.userName)
-                .enterUserPassword(UtilityData.readJson("loginData").login.validLogin.password)
+                .enterUserName(users[0])
+                .enterUserPassword(users[1])
                 .clickOnLoginBtn();
         Assert.assertTrue(new P02_LoginPage(getDriver()).assertOnHomeUrl(UtilityData.readDataFromPropertyFile("ENV", "HomePage")));
     }
 
+    @DataProvider
+    public Object[] invalidLogin() throws IOException, ParseException {
+        return UtilityData.readDataJson("invalidLogin");
+    }
 
-    @Test(priority = 2)
+
+    @Test(priority = 2, dataProvider = "invalidLogin")
     @Description("test invalid login feature with in valid user name ")
     @Epic("Web App")
     @Feature("login feature")
     @Story("invalid login")
-    public void inValidLogin() {
+    public void inValidLogin(String data) {
+        String users[] = data.split(",");
         new P01_LandingPage(getDriver()).goToLoginForm()
-                .enterUserName(UtilityData.readJson("loginData").login.inValidLogin.userName)
-                .enterUserPassword(UtilityData.readJson("loginData").login.inValidLogin.password)
+                .enterUserName(users[0])
+                .enterUserPassword(users[1])
                 .clickOnLoginBtn();
 
         Assert.assertEquals(new P02_LoginPage(getDriver()).assertOnTextDanger(), "Login failed! Please ensure the username and password are valid.");
     }
 
+    /*
+        @Test(priority = 3)
+        @Description("test invalid login feature with empty coordination")
+        @Epic("Web App")
+        @Feature("login feature")
+        @Story("invalid login")
+        public void inValidLoginTwo() {
+            new P01_LandingPage(getDriver()).goToLoginForm()
+                    .enterUserName(userName)
+                    .enterUserPassword(password)
+                    .clickOnLoginBtn();
+            Assert.assertEquals(new P02_LoginPage(getDriver()).assertOnTextDanger(), "Login failed! Please ensure the username and password are valid.");
+        }
 
-    @Test(priority = 3)
-    @Description("test invalid login feature with empty coordination")
-    @Epic("Web App")
-    @Feature("login feature")
-    @Story("invalid login")
-    public void inValidLoginTwo() {
-        new P01_LandingPage(getDriver()).goToLoginForm()
-                .enterUserName(UtilityData.readJson("loginData").login.inValidLogin2.userName)
-                .enterUserPassword(UtilityData.readJson("loginData").login.inValidLogin2.password)
-                .clickOnLoginBtn();
-        Assert.assertEquals(new P02_LoginPage(getDriver()).assertOnTextDanger(), "Login failed! Please ensure the username and password are valid.");
-    }
-
-
+    */
     @AfterMethod
     public void tearDown() {
         DriverFactory.tearDown();

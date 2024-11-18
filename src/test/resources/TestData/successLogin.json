@@ -1,0 +1,22 @@
+{
+  "validLogin": [
+    {
+      "userName": "John Doe",
+      "password": "ThisIsNotAPassword"
+    }
+  ],
+  "invalidLogin": [
+    {
+      "userName": "John Doe",
+      "password": "Thiword"
+    },
+    {
+      "userName": "John ",
+      "password": "ThisIsNotAPassword"
+    },
+    {
+      "userName": " ",
+      "password": " "
+    }
+  ]
+}
