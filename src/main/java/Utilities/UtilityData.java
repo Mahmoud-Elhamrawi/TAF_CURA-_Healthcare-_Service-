@@ -14,7 +14,6 @@ import java.util.Properties;
 
 public class UtilityData {
     public static final String path_file_data = "src/test/resources/TestData/";
-    static String successfulLogin = "invalidLogin";
 
     //TODO::read data from json file
     public static String readDataFromJsonFile(String fileName, String key) {
