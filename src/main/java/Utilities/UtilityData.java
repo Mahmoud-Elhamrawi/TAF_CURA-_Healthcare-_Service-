@@ -62,7 +62,7 @@ public class UtilityData {
         return arr;
     }
 
-    public static String[] readDataJson(String statuss) throws IOException, ParseException {
-        return readJsonFile(statuss);
+    public static String[] readDataJson(String typeData) throws IOException, ParseException {
+        return readJsonFile(typeData);
     }
 }

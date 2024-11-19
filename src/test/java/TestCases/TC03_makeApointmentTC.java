@@ -57,6 +57,7 @@ public class TC03_makeApointmentTC {
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
+    //appointmentData.json
     @Description("test makeAppointment feature with valid data ")
     @Epic("Web App")
     @Feature("makeAppointment feature")
@@ -67,9 +68,9 @@ public class TC03_makeApointmentTC {
                 .enterUserName(userName)
                 .enterUserPassword(password)
                 .clickOnLoginBtn()
-                .selectFacility("Hongkong CURA Healthcare Center")
+                .selectFacility(UtilityData.readDataFromJsonFile("appointmentData", "Facility"))
                 .checkHospitalReadmission()
-                .clickOnRadioProgramMedicaid("medicare")
+                .clickOnRadioProgramMedicaid(UtilityData.readDataFromJsonFile("appointmentData", "Healthcare"))
 
                 .enterVisitDate(UtilityData.readDataFromJsonFile("appointmentData", "Date"))
                 .addComment(UtilityData.readDataFromJsonFile("appointmentData", "comment"))
@@ -83,39 +84,6 @@ public class TC03_makeApointmentTC {
         new P03_makeAppointmentPage(getDriver()).goToHomePage();
         Assert.assertTrue(new P01_LandingPage(getDriver()).assertOnUrl(UtilityData.readDataFromPropertyFile("ENV", "landingUrl")));
 
-
-    }
-
-    @Description("test makeAppointment feature with valid data ")
-    @Epic("Web App")
-    @Feature("makeAppointment feature")
-    @Story("valid makeAppointment")
-    @Test(priority = 2)
-    public void makeAppointmentTwo() {
-        new P01_LandingPage(getDriver()).goToLoginForm()
-                .enterUserName(userName)
-                .enterUserPassword(password)
-                .clickOnLoginBtn()
-                .selectFacility("Seoul CURA Healthcare Center")
-                .checkHospitalReadmission()
-                .clickOnRadioProgramMedicaid("none")
-
-                .enterVisitDate(UtilityData.readDataFromJsonFile("appointmentData", "Date"))
-                .addComment(UtilityData.readDataFromJsonFile("appointmentData", "comment"))
-                .submitAppointment();
-
-        Assert.assertTrue(new P03_makeAppointmentPage(getDriver()).assertOnConfirmationAppointmentURL(UtilityData.readDataFromPropertyFile("ENV", "appointmentConfirmURL")));
-        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnConfirmAppoimtmentText(), "Appointment Confirmation");
-        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnDateEntering(), UtilityData.readDataFromJsonFile("appointmentData", "Date"));
-        Assert.assertEquals(new P03_makeAppointmentPage(getDriver()).assertOnCommentEntering(), UtilityData.readDataFromJsonFile("appointmentData", "comment"));
-
-        new P03_makeAppointmentPage(getDriver()).goToHomePage();
-        Assert.assertTrue(new P01_LandingPage(getDriver()).assertOnUrl(UtilityData.readDataFromPropertyFile("ENV", "landingUrl")));
-
-        new P03_makeAppointmentPage(getDriver()).clickingOnToggle()
-                .goToHistoryPage();
-
-        Assert.assertTrue(new P03_makeAppointmentPage(getDriver()).assertOnUrlHistory(UtilityData.readDataFromPropertyFile("ENV", "urlHistory")));
 
     }
 

@@ -79,21 +79,7 @@ public class TC02_LoginTC {
         Assert.assertEquals(new P02_LoginPage(getDriver()).assertOnTextDanger(), "Login failed! Please ensure the username and password are valid.");
     }
 
-    /*
-        @Test(priority = 3)
-        @Description("test invalid login feature with empty coordination")
-        @Epic("Web App")
-        @Feature("login feature")
-        @Story("invalid login")
-        public void inValidLoginTwo() {
-            new P01_LandingPage(getDriver()).goToLoginForm()
-                    .enterUserName(userName)
-                    .enterUserPassword(password)
-                    .clickOnLoginBtn();
-            Assert.assertEquals(new P02_LoginPage(getDriver()).assertOnTextDanger(), "Login failed! Please ensure the username and password are valid.");
-        }
-
-    */
+    
     @AfterMethod
     public void tearDown() {
         DriverFactory.tearDown();

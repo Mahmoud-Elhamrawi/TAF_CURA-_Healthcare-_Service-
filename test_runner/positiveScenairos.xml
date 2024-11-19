@@ -12,11 +12,18 @@
                     <include name="DataModeling.validLogin"/>
                 </methods>
             </class>
-            <class name="TestCases.TC_makeApointmentTC">
+            <class name="TestCases.TC03_makeApointmentTC">
                 <methods>
-                    <include name="makeAppointment"/>
+                    <include name="makeAppointmentOne"/>
                 </methods>
             </class>
+
+            <class name="TestCases.TC04_HistoryTest">
+                <methods>
+                    <include name="testConfirmApp"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 
