@@ -57,16 +57,16 @@ public class TC04_HistoryTest {
                 .submitAppointment();
 
 
-        Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnFacility(), UtilityData.readDataFromJsonFile("Appointment", "Facility"));
-        Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnProgram(), UtilityData.readDataFromJsonFile("Appointment", "Healthcare"));
-        Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnComment(), UtilityData.readDataFromJsonFile("Appointment", "comment"));
-        Assert.assertEquals(new P04_HistoryPage(getDriver()).checkOnHistoryData(), UtilityData.readDataFromJsonFile("Appointment", "Date"));
+        Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnFacility(), UtilityData.readDataFromJsonFile("appointmentData", "Facility"));
+        Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnProgram(), UtilityData.readDataFromJsonFile("appointmentData", "Healthcare"));
+        Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnComment(), UtilityData.readDataFromJsonFile("appointmentData", "comment"));
+        Assert.assertEquals(new P04_HistoryPage(getDriver()).checkOnHistoryData(), UtilityData.readDataFromJsonFile("appointmentData", "Date"));
 
 
-        UtilityLogs.info(UtilityData.readDataFromJsonFile("Appointment", "Facility"));
-        UtilityLogs.info(UtilityData.readDataFromJsonFile("Appointment", "Healthcare"));
-        UtilityLogs.info(UtilityData.readDataFromJsonFile("Appointment", "comment"));
-        UtilityLogs.info(UtilityData.readDataFromJsonFile("Appointment", "Date"));
+        UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Facility"));
+        UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Healthcare"));
+        UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "comment"));
+        UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Date"));
 
 
     }
