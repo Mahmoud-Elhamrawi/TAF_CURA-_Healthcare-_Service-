@@ -4,6 +4,7 @@ import DriverFactory.DriverFactory;
 import Listeners.IInvokedListener;
 import Listeners.ITestListener;
 import Pages.P01_LandingPage;
+import Pages.P03_makeAppointmentPage;
 import Pages.P04_HistoryPage;
 import Utilities.UtilityData;
 import Utilities.UtilityLogs;
@@ -57,17 +58,25 @@ public class TC04_HistoryTest {
                 .submitAppointment();
 
 
+        new P03_makeAppointmentPage(getDriver())
+                .goToHomePage()
+                .clickingOnToggle()
+                .goToHistoryPage();
+
+        Assert.assertTrue(new P03_makeAppointmentPage(getDriver()).assertOnUrlHistory(UtilityData.readDataFromPropertyFile("ENV", "urlHistory")));
+
+
         Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnFacility(), UtilityData.readDataFromJsonFile("appointmentData", "Facility"));
         Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnProgram(), UtilityData.readDataFromJsonFile("appointmentData", "Healthcare"));
         Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnComment(), UtilityData.readDataFromJsonFile("appointmentData", "comment"));
         Assert.assertEquals(new P04_HistoryPage(getDriver()).checkOnHistoryData(), UtilityData.readDataFromJsonFile("appointmentData", "Date"));
 
-
+/*
         UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Facility"));
         UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Healthcare"));
         UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "comment"));
         UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Date"));
-
+*/
 
     }
 

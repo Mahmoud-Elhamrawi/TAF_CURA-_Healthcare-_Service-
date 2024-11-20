@@ -13,12 +13,11 @@ public class P03_makeAppointmentPage {
     private final By appointmentForm = By.className("form-horizontal");
     private final By combo_facility = By.id("combo_facility");
     private final By chk_hospotal_readmission = By.id("chk_hospotal_readmission");
-    //    private final By radio_program_medicaid = By.xpath("//input[@id=\"radio_program_medicaid\"]");
-//    private final By radio_program_medicare = By.xpath("//input[@id=\"radio_program_medicare\"]");
-//    private final By radio_program_none =By.xpath("//input[@id=\"radio_program_none\"]");
+
     private final By txt_visit_date = By.id("txt_visit_date");
     private final By txt_comment = By.id("txt_comment");
     private final By btn_appointment = By.id("btn-book-appointment");
+
     private final By appointmentText = By.cssSelector("section[id=\"summary\"] h2");
     private final By dateAssert = By.id("visit_date");
     private final By commentAssert = By.id("comment");
@@ -28,11 +27,10 @@ public class P03_makeAppointmentPage {
     private final By menu_toggle = By.id("menu-toggle");
     private final By historyBtn = By.linkText("History");
 
-    //radio_program_none   radio_program_medicare
+
     public P03_makeAppointmentPage(WebDriver driver) {
         this.driver = driver;
     }
-
 
     public P03_makeAppointmentPage selectFacility(String val) {
         UtilityClasses.selectDropDown(driver, combo_facility, val);
@@ -60,10 +58,11 @@ public class P03_makeAppointmentPage {
         return this;
     }
 
-    public P04_HistoryPage submitAppointment() {
+    public P03_makeAppointmentPage submitAppointment() {
         UtilityClasses.clickOnEle(driver, btn_appointment);
-        return new P04_HistoryPage(driver);
+        return this;
     }
+
 
     public boolean assertOnConfirmationAppointmentURL(String expectUrl) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.urlToBe(expectUrl));
@@ -84,8 +83,11 @@ public class P03_makeAppointmentPage {
 
     }
 
-    public void goToHomePage() {
+
+    ///////////////////////////////////////////////////////////////////////
+    public P03_makeAppointmentPage goToHomePage() {
         UtilityClasses.clickOnEle(driver, GoToHomepage);
+        return this;
     }
 
 
