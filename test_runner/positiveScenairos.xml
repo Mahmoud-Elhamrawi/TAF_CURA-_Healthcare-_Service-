@@ -9,7 +9,8 @@
         <classes>
             <class name="TestCases.TC02_LoginTC">
                 <methods>
-                    <include name="DataModeling.validLogin"/>
+                    <include name="validLogin"/>
+                    <include name="inValidLogin"/>
                 </methods>
             </class>
             <class name="TestCases.TC03_makeApointmentTC">
@@ -20,7 +21,7 @@
 
             <class name="TestCases.TC04_HistoryTest">
                 <methods>
-                    <include name="testConfirmApp"/>
+                    <include name="historyPage"/>
                 </methods>
             </class>
 

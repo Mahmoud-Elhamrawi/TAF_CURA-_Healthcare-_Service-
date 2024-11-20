@@ -10,33 +10,39 @@ public class P04_HistoryPage {
     private final By program = By.id("program");
     private final By comment = By.id("comment");
     private final By Date = By.className("panel-heading");
-//facility
+    private final By logout = By.linkText("Logout");
+
 
     public P04_HistoryPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public P04_HistoryPage assertOnFacility() {
+    public String assertOnFacility() {
 
-        UtilityClasses.getTextFromEle(driver, facility);
-        return this;
+        return UtilityClasses.getTextFromEle(driver, facility);
+
     }
 
-    public P04_HistoryPage assertOnProgram() {
+    public String assertOnProgram() {
 
-        UtilityClasses.getTextFromEle(driver, program);
-        return this;
+        return UtilityClasses.getTextFromEle(driver, program);
     }
 
-    public P04_HistoryPage assertOnComment() {
+    public String assertOnComment() {
 
-        UtilityClasses.getTextFromEle(driver, comment);
-        return this;
+        return UtilityClasses.getTextFromEle(driver, comment);
     }
 
-    public P04_HistoryPage checkOnHistoryData() {
+    public String checkOnHistoryData() {
 
-        UtilityClasses.getTextFromEle(driver, Date);
-        return this;
+        return UtilityClasses.getTextFromEle(driver, Date);
     }
+
+
+    public P05_logOutPage clickOnLogout() {
+        UtilityClasses.clickOnEle(driver, logout);
+        return new P05_logOutPage(driver);
+    }
+
+
 }

@@ -6,6 +6,7 @@ import Listeners.ITestListener;
 import Pages.P01_LandingPage;
 import Pages.P03_makeAppointmentPage;
 import Pages.P04_HistoryPage;
+import Pages.P05_logOutPage;
 import Utilities.UtilityData;
 import Utilities.UtilityLogs;
 import io.qameta.allure.Description;
@@ -43,7 +44,7 @@ public class TC04_HistoryTest {
     @Feature("makeAppointment feature")
     @Story("valid makeAppointment")
     @Test()
-    public void testConfirmApp() {
+    public void historyPage() {
 
         new P01_LandingPage(getDriver()).goToLoginForm()
                 .enterUserName(userName)
@@ -67,16 +68,16 @@ public class TC04_HistoryTest {
 
 
         Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnFacility(), UtilityData.readDataFromJsonFile("appointmentData", "Facility"));
-        Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnProgram(), UtilityData.readDataFromJsonFile("appointmentData", "Healthcare"));
+        Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnProgram().toLowerCase(), UtilityData.readDataFromJsonFile("appointmentData", "Healthcare"));
         Assert.assertEquals(new P04_HistoryPage(getDriver()).assertOnComment(), UtilityData.readDataFromJsonFile("appointmentData", "comment"));
         Assert.assertEquals(new P04_HistoryPage(getDriver()).checkOnHistoryData(), UtilityData.readDataFromJsonFile("appointmentData", "Date"));
 
-/*
-        UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Facility"));
-        UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Healthcare"));
-        UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "comment"));
-        UtilityLogs.info(UtilityData.readDataFromJsonFile("appointmentData", "Date"));
-*/
+        new P03_makeAppointmentPage(getDriver()).clickingOnToggle();
+        new P04_HistoryPage(getDriver()).clickOnLogout();
+
+
+        Assert.assertTrue(new P05_logOutPage(getDriver()).assertOnLogOutUrl(UtilityData.readDataFromPropertyFile("ENV", "landingUrl")));
+
 
     }
 
